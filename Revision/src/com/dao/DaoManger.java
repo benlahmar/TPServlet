@@ -2,6 +2,7 @@ package com.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.model.DBInteraction;
@@ -56,8 +57,25 @@ public class DaoManger implements IDao {
 
 	@Override
 	public List<Post> findpostsByUser(int idu) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Post> ps=new ArrayList<Post>();
+		DBInteraction.connect();
+		ResultSet rs = DBInteraction.Select("select * from post");
+		try {
+			while(rs.next())
+			{
+				Post p=new Post();
+				p.setIdp(rs.getInt(1));
+				p.setTitre(rs.getString(2));
+				p.setContnent(rs.getString(3));
+				//p.setDate(rs.getDate(4));
+				ps.add(p);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ps;
 	}
 
 }
