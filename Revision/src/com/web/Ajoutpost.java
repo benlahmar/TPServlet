@@ -46,12 +46,7 @@ public class Ajoutpost extends HttpServlet {
 		int idu =Integer.parseInt(request.getParameter("iduser"));
 		pm.addpost(titre, contenu, idu);
 		
-		List<Post> ps = pm.findpostsByUser(idu);
-		out.println("<table border='1' bgcolor='gold'>");
-		for (Post p : ps) {
-			out.println("<tr><td>"+p.getIdp()+"</td><td>"+p.getTitre()+"</td><td>"+p.getContnent()+"</td></tr>");
-		}
-		out.println("</table>");
+		response.sendRedirect("post.jsp");
 	}
 
 }
