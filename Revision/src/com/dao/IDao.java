@@ -13,4 +13,6 @@ public interface IDao {
 	public int addpost(String titre,String contenu, int idu);
 	public Post findByid(int id);
 	public List<Post> findpostsByUser(int idu);
+	
+	public int addcomm(String contenu, int idp, int idu);
 }

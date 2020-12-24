@@ -10,6 +10,8 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link href="post.css" type="text/css" rel="styleSheet" />
+<link href="css/bootstrap.min.css" type="text/css" rel="styleSheet" />
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -50,19 +52,24 @@ List<Post> posts=dao.findpostsByUser(us.getId());
 for(Post p:posts)
 {
 %>
-<div class="post">
+<div class="row">
+<div class="col-lg-3">
+<div class="card">
 
-<h2><%= p.getTitre() %> </h2>
+<h2 class="card-header"><%= p.getTitre() %> </h2>
+<div class="card-body">
 <p><%= p.getContnent() %> </p>
+</div>
 <div class="com">
 <form action="Addcom" >
 <textarea rows="3" cols="20" name="contenu"></textarea>
 <input type="hidden" name="idp" value="<%= p.getIdp()%>"/>
 <input type="hidden" name="idu" value="<%= us.getId()  %>"/>
-<input type="submit" value="add"/>
+<input type="submit" class="btn btn-info" value="add"/>
 </form>
 </div>
-
+</div>
+</div>
 </div>
 <%} %>
 

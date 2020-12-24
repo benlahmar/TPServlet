@@ -78,4 +78,13 @@ public class DaoManger implements IDao {
 		return ps;
 	}
 
+	@Override
+	public int addcomm(String contenu, int idp, int idu) {
+		DBInteraction.connect();
+		String sql="insert into commentaire(contenu,idp,idu) values('"+contenu+"',"+idp+","+idu+")";
+		int nb=DBInteraction.Maj(sql);
+		DBInteraction.disconnect();
+		return nb;
+	}
+
 }
