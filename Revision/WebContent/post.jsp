@@ -1,3 +1,4 @@
+<%@page import="com.model.Commentaire"%>
 <%@page import="com.model.Post"%>
 <%@page import="java.util.List"%>
 <%@page import="com.dao.DaoManger"%>
@@ -53,20 +54,44 @@ for(Post p:posts)
 {
 %>
 <div class="row">
-<div class="col-lg-3">
-<div class="card">
+<div class="col-lg-8">
+<div class="card border-primary mb-3">
 
 <h2 class="card-header"><%= p.getTitre() %> </h2>
 <div class="card-body">
 <p><%= p.getContnent() %> </p>
+<div class="container">
+<div class="row">
+<ul class="list-group col-12">
+  
+<% 
+List<Commentaire> cs= dao.allcommentaire(p.getIdp());
+for(Commentaire cm:cs)
+{
+%>
+<li class="list-group-item d-flex justify-content-between align-items-center">
+    <%=cm.getContenu() %>
+    <span class="badge bg-primary rounded-pill"><%=cm.getDate() %></span>
+ </li>
+
+<%} %>
+</ul>
 </div>
-<div class="com">
-<form action="Addcom" >
-<textarea rows="3" cols="20" name="contenu"></textarea>
+<div class="row">
+<div class="col-md-8">
+<form action="Addcom"  class=" container ">
+<div class="form-floating mb-3">
+  <textarea class="form-control" name="contenu" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+  
+</div>
 <input type="hidden" name="idp" value="<%= p.getIdp()%>"/>
 <input type="hidden" name="idu" value="<%= us.getId()  %>"/>
 <input type="submit" class="btn btn-info" value="add"/>
 </form>
+</div>
+</div>
+</div>
+<div class="card-footer bg-transparent border-success">Footer</div>
 </div>
 </div>
 </div>

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.model.Commentaire;
 import com.model.DBInteraction;
 import com.model.Post;
 import com.model.User;
@@ -85,6 +86,29 @@ public class DaoManger implements IDao {
 		int nb=DBInteraction.Maj(sql);
 		DBInteraction.disconnect();
 		return nb;
+	}
+
+	@Override
+	public List<Commentaire> allcommentaire(int idp) {
+		List<Commentaire> cms=new ArrayList<Commentaire>();
+		DBInteraction.connect();
+		
+		String sql="select * from commentaire where idp="+idp;
+		ResultSet rs = DBInteraction.Select(sql);
+		try {
+			while(rs.next())
+			{
+				Commentaire c=new Commentaire();
+				c.setId(rs.getInt(1));
+				c.setContenu(rs.getString(2));
+				c.setDate(rs.getDate(3));
+				cms.add(c);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cms;
 	}
 
 }

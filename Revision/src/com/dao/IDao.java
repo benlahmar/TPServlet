@@ -2,6 +2,7 @@ package com.dao;
 
 import java.util.List;
 
+import com.model.Commentaire;
 import com.model.Post;
 import com.model.User;
 
@@ -15,4 +16,6 @@ public interface IDao {
 	public List<Post> findpostsByUser(int idu);
 	
 	public int addcomm(String contenu, int idp, int idu);
+	
+	public List<Commentaire> allcommentaire(int idp);
 }
