@@ -18,4 +18,8 @@ public interface IDao {
 	public int addcomm(String contenu, int idp, int idu);
 	
 	public List<Commentaire> allcommentaire(int idp);
+	
+	public int addlike(int idu, int idp);
+	public int countlik(int idp);
+	
 }

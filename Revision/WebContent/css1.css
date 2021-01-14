@@ -1,0 +1,9 @@
+@charset "ISO-8859-1";
+
+.ppp:hover{
+	transform:rotateY(360deg);
+	transition: all 4s;
+}
+.hhh{
+	perspective:persperve-3d;
+}

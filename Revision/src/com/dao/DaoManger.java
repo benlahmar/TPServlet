@@ -111,4 +111,32 @@ public class DaoManger implements IDao {
 		return cms;
 	}
 
+	@Override
+	public int addlike(int idu, int idp) {
+		DBInteraction.connect();
+		String sql="insert into likr(idu,idp) values("+idu+","+idp+")";
+		int nb=DBInteraction.Maj(sql);
+		DBInteraction.disconnect();
+		return nb;
+	}
+
+	@Override
+	public int countlik(int idp) {
+		DBInteraction.connect();
+		int nb = 0 ;
+		String sql="select count(*) from like where idp="+idp;
+		ResultSet rs = DBInteraction.Select(sql);
+		try {
+			if(rs.next())
+			{
+				nb= rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DBInteraction.disconnect();
+		return nb;
+	}
+
 }
